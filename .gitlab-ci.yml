@@ -1,0 +1,17 @@
+.base:
+  tags: ["shell"]
+  script:
+    - set -x
+    - make NO_CACHE=$NO_CACHE DOCKER_USER=$DOCKER_USER/$CI_PROJECT_PATH DISTRIBUTION=$DISTRIBUTION RELEASE=$RELEASE $DISTRIBUTION.$RELEASE
+
+archlinux.latest:
+  extends: .base
+  variables:
+    DISTRIBUTION: "archlinux"
+    RELEASE: "latest"
+
+centos.8:
+  extends: .base
+  variables:
+    DISTRIBUTION: "centos"
+    RELEASE: "8"
